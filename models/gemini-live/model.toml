@@ -1,0 +1,24 @@
+[model]
+id = "gemini-live"
+name = "Gemini 3.1 Flash Live"
+modality = "speech-to-speech"
+max_concurrency = 16
+
+[connection]
+type = "websocket"
+url = "wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent"
+api_key_env = "GCP_API_KEY"
+
+[audio]
+input_sample_rate = 24000
+output_sample_rate = 24000
+encoding = "pcm16"
+frame_samples = 480
+
+[session]
+voice_prompt = "Kore"
+text_prompt = ""
+live_model = "gemini-3.1-flash-live-preview"
+vad_prefix_padding_ms = 300
+vad_silence_duration_ms = 500
+interrupt_response = true

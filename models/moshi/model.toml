@@ -1,0 +1,23 @@
+[model]
+id = "moshi"
+name = "Kyutai Moshi 7B"
+modality = "speech-to-speech"
+adapter = "../personaplex/adapter.py"
+max_concurrency = 48
+
+[connection]
+type = "websocket"
+url = "https://peoplemakethings--people-bench-moshi-serve.modal.run"
+
+[audio]
+input_sample_rate = 24000
+output_sample_rate = 24000
+encoding = "opus"
+frame_samples = 1920
+
+[session]
+voice_prompt = ""
+text_prompt = ""
+
+[secrets]
+hf_token_env = "HF_TOKEN"

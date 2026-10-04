@@ -1,0 +1,29 @@
+[model]
+id = "grok-voice"
+name = "xAI Grok Voice"
+modality = "speech-to-speech"
+adapter = "../gpt-realtime/adapter.py"
+session_layout = "xai"
+# 16 concurrent sessions made xAI's websocket apply send backpressure: frame
+# lag reached 20-46s and sessions were scored on audio the model never heard
+# on time. 8 keeps the deadline scheduler on wall clock.
+max_concurrency = 8
+
+[connection]
+type = "websocket"
+url = "wss://api.x.ai/v1/realtime?model=grok-voice-latest"
+api_key_env = "XAI_API_KEY"
+
+[audio]
+input_sample_rate = 24000
+output_sample_rate = 24000
+encoding = "pcm16"
+frame_samples = 480
+
+[session]
+voice_prompt = "eve"
+text_prompt = ""
+vad_threshold = 0.5
+vad_prefix_padding_ms = 300
+vad_silence_duration_ms = 300
+interrupt_response = true

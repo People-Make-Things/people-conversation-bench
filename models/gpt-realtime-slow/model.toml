@@ -1,0 +1,26 @@
+[model]
+id = "gpt-realtime-slow"
+name = "OpenAI GPT Realtime (Slow)"
+modality = "speech-to-speech"
+adapter = "../gpt-realtime/adapter.py"
+session_layout = "openai"
+max_concurrency = 16
+
+[connection]
+type = "websocket"
+url = "wss://api.openai.com/v1/realtime?model=gpt-realtime-2025-08-28"
+api_key_env = "OPENAI_API_KEY"
+
+[audio]
+input_sample_rate = 24000
+output_sample_rate = 24000
+encoding = "pcm16"
+frame_samples = 480
+
+[session]
+voice_prompt = "alloy"
+text_prompt = ""
+vad_threshold = 0.5
+vad_prefix_padding_ms = 300
+vad_silence_duration_ms = 500
+interrupt_response = true
